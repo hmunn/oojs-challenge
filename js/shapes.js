@@ -13,3 +13,44 @@
     or registerClassicalShape() to register your new shapes with the application. See the
     app.js file for info on these functions.
  */
+
+function Rectangle (left, top, width, height, stylesMap) {
+    Shape.call(this, left, top, width, height, stylesMap);
+
+    this.renderShape = function(canvasCtx) {
+        canvasCtx.fillRect(this.left, this.top, this.width, this.height, this.stylesMap);
+    };
+}
+
+Rectangle.prototype = new Shape();
+
+registerClassicalShape('Rectangle', Rectangle);
+
+function Circle (left, top, width, height, stylesMap) {
+    Shape.call(this, left, top, width, height, stylesMap);
+
+    this.renderShape = function(canvasCtx) {
+        canvasCtx.beginPath();
+        canvasCtx.arc(this.left, this.top, this.height, 0, 2*Math.PI, this.stylesMap);
+        canvasCtx.fill();
+    }
+}
+
+Circle.prototype = new Shape();
+
+registerClassicalShape('Circle', Circle);
+
+function Lamp (left, top, width, height, stylesMap) {
+    Shape.call(this, left, top, width, height, stylesMap)
+
+    
+    this.renderShape = function(canvasCtx) {
+        canvasCtx.font = '20px Comic-Sans';
+        canvasCtx.fillText("Lamp Illuminate!", this.left, this.top);
+    }
+}
+
+Lamp.prototype = new Shape();
+
+registerClassicalShape('Lamp', Lamp);
+
